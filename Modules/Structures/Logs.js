@@ -2,18 +2,18 @@ const chalk = require("chalk")
 
 module.exports = class Log {
     static Error(message) {
-        console.error(`${chalk.bgHex('#ed3737').bold('ERROR')} ` + message)
+        console.error(`${chalk.bgRed.white.bold(' ERROR ')} » ` + message)
     }
 
     static Process(message) {
-        console.log(`${chalk.bgHex('#4373f7').bold('PROCESS')} ` + message)
+        console.log(`${chalk.bgBlue.white.bold('PROCESS')} » ` + message)
     }
 
     static Info(message) {
-        console.info(`${chalk.bgHex('#bd257e').bold('INFO')} ` + message)
+        console.info(`${chalk.white.bgHex('#bd257e').bold(' INFO  ')} » ` + message)
     }
 
     static Debug(message) {
-        console.log(`${chalk.bgHex('#d8e33d').bold('DEBUG')} ` + message)
+        console.log(`${chalk.bgGrey.white.bold(' DEBUG ')} » ` + message)
     }
 }

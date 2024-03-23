@@ -1,31 +1,37 @@
-/*require('dotenv/config');
+require('dotenv').config({ path: './Configs/.env' });
 
 const { ClusterManager, HeartbeatManager } = require('discord-hybrid-sharding');
 const { Process } = require('./Modules/Structures/Logs');
+const Mongo = require('./Modules/Mongo/Connect');
+const { checkAllData } = require('./Modules/Utils/DataCheck');
 
-// Cluster creation
-const manager = new ClusterManager(`${__dirname}/client.js`, {
-    totalShards: 'auto',
-    shardsPerClusters: 5,
-    totalClusters: 'auto',
-    mode: 'process',
-    token: process.env.TOKEN,
-    respawn: true,
-});
+(async () => {
 
-manager.extend(
-    new HeartbeatManager({
-        interval: 4000,
-        maxMissedHeartbeats: 3,
-    })
-)
+    // Check all datas
+    const dataStatus = await checkAllData();
+    if(!dataStatus) return;
 
-manager.on('clusterCreate', cluster => Process(`Launched Cluster ${cluster.id}`));
-manager.spawn({ timeout: -1 });*/
+    // Database connetion
+    await Mongo.connect();
 
-const { Process, Info, Error, Debug } = require("./Modules/Structures/Logs");
+    // Cluster creation
+    const manager = new ClusterManager(`${__dirname}/Modules/Client.js`, {
+        totalShards: 'auto',
+        shardsPerClusters: 5,
+        totalClusters: 'auto',
+        mode: 'process',
+        token: process.env.TOKEN,
+        respawn: true,
+    });
 
-Process('test')
-Info('test')
-Error('test')
-Debug('test')
+    manager.extend(
+        new HeartbeatManager({
+            interval: 4000,
+            maxMissedHeartbeats: 3,
+        })
+    )
+
+    manager.on('clusterCreate', cluster => Process(`Launched Cluster ${cluster.id}`));
+    manager.spawn({ timeout: -1 });
+
+})();

@@ -1,4 +1,5 @@
 const { Client, GatewayIntentBits, Options } = require('discord.js');
+const Events = require('./Utils/RegisterEvents');
 
 const client = new Client({
     shards: getInfo().SHARD_LIST, // An array of shards that will get spawned
@@ -51,3 +52,10 @@ const client = new Client({
 });
 
 client.cluster = new ClusterClient(client); // initialize the Client, so we access the .broadcastEval()
+
+// ================= Register =================
+
+await Events.registerEvents(client);
+
+// ================= Loading =================
+
