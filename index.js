@@ -1,4 +1,4 @@
-require('dotenv/config');
+/*require('dotenv/config');
 
 const { ClusterManager, HeartbeatManager } = require('discord-hybrid-sharding');
 const { Process } = require('./Modules/Structures/Logs');
@@ -21,4 +21,11 @@ manager.extend(
 )
 
 manager.on('clusterCreate', cluster => Process(`Launched Cluster ${cluster.id}`));
-manager.spawn({ timeout: -1 });
+manager.spawn({ timeout: -1 });*/
+
+const { Process, Info, Error, Debug } = require("./Modules/Structures/Logs");
+
+Process('test')
+Info('test')
+Error('test')
+Debug('test')
