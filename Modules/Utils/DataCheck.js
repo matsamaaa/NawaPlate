@@ -1,5 +1,5 @@
-const { Error } = require('../Structures/Logs');
-const { TOKEN_DISCORD, URL_MONGO } = process.env;
+const { Error, Warn, Info } = require('../Structures/Logs');
+const { TOKEN_DISCORD, URL_MONGO_INTERNAL, URL_MONGO_EXTERNAL } = process.env;
 
 module.exports = class Checker {
     static isRunning = true;
@@ -16,7 +16,23 @@ module.exports = class Checker {
     // ================= URLS =================
 
     static async urlMongo() {
-        if(!URL_MONGO || URL_MONGO.startsWith("URL_HERE")) {
+        let internalMongo = true, 
+            externalMongo = true;
+
+        // check internal URL
+        if(!URL_MONGO_INTERNAL || !URL_MONGO_INTERNAL.toLowerCase().startsWith("mongodb://")) {
+            Warn(`invalid internal mongo url format in Configs/.env`);
+            internalMongo = false;
+        }
+
+        // check external URL
+        if(!URL_MONGO_EXTERNAL || !URL_MONGO_EXTERNAL.toLowerCase().startsWith("mongodb://")) {
+            Warn(`invalid external mongo url format in Configs/.env`);
+            externalMongo = false;
+        }
+
+        // check all mongos
+        if(!internalMongo && !externalMongo) {
             Error(`invalid mongo url format in Configs/.env`);
             Checker.isRunning = false;
         }

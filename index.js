@@ -12,7 +12,8 @@ const { checkAllData } = require('./Modules/Utils/DataCheck');
     if(!dataStatus) return;
 
     // Database connetion
-    await Mongo.connect();
+    const mongoStatus = await Mongo.connect();
+    if(!mongoStatus) return;
 
     // Cluster creation
     const manager = new ClusterManager(`${__dirname}/Modules/Client.js`, {
@@ -20,7 +21,7 @@ const { checkAllData } = require('./Modules/Utils/DataCheck');
         shardsPerClusters: 5,
         totalClusters: 'auto',
         mode: 'process',
-        token: process.env.TOKEN,
+        token: process.env.TOKEN_DISCORD,
         respawn: true,
     });
 
