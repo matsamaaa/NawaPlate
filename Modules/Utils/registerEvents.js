@@ -11,11 +11,11 @@ module.exports = class Events {
 
     static async registerEvents(client) {
         const eventFiles = fs
-        .readdirSync(`${__dirname}/Events`)
+        .readdirSync(`${process.cwd()}/Events`)
         .filter((file) => file.endsWith('.js'))
-    
+        
         for (const file of eventFiles) {
-            const event = require(`${__dirname}/events/${file}`)
+            const event = require(`${process.cwd()}/Events/${file}`)
             if (event.once) {
                 client.once(event.name, async (...args) => {
                     await event.execute(...args, client)

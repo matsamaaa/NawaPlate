@@ -1,4 +1,5 @@
 const { Client, GatewayIntentBits, Options } = require('discord.js');
+const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
 const Events = require('./Utils/RegisterEvents');
 
 const client = new Client({
@@ -53,9 +54,13 @@ const client = new Client({
 
 client.cluster = new ClusterClient(client); // initialize the Client, so we access the .broadcastEval()
 
-// ================= Register =================
+(async () => {
 
-await Events.registerEvents(client);
+	// ================= Register =================
 
-// ================= Loading =================
+	await Events.registerEvents(client);
+
+	// ================= Loading =================
+
+})();
 
