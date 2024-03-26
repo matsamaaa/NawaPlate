@@ -1,18 +1,20 @@
 const { PermissionsBitField, SlashCommandBuilder, Client } = require('discord.js');
 
 module.exports = {
-    nsfw: false,
-    permissions: {
-        bot: [PermissionsBitField.Flags.SendMessages],
-        user: [PermissionsBitField.Flags.SendMessages]
+    options: {
+        nsfw: false,
+        permissions: {
+            bot: [PermissionsBitField.Flags.SendMessages],
+            user: [PermissionsBitField.Flags.SendMessages]
+        },
+        dm: {
+            only: false,
+            authorize: true
+        },
+        maintenance: false,
+        premium: false,
+        slowmode: null //time in miliseconds
     },
-    dm: {
-        only: false,
-        authorize: true
-    },
-    maintenance: false,
-    premium: false,
-    slowmode: null, //time in miliseconds
     
     /**
      * @description The data of the help command.

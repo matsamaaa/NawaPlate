@@ -55,6 +55,8 @@ const client = new Client({
 	],
 });
 
+client.setMaxListeners(0);
+
 (async () => {
 	
 	await client.login(TOKEN_DISCORD);

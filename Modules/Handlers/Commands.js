@@ -10,7 +10,7 @@ module.exports = class Commands {
      */
 
     static async registerCommands(client) {
-        Process(`registration commands in progress in cluster [${chalk.bold.blueBright(client.cluster.id)}]`)
+        Process(`registration commands in progress in cluster [${client.cluster.id}]`)
 
         client.slashCommands = new Collection();
         const path = `${process.cwd()}/Interactions/SlashCommands/`
@@ -32,7 +32,7 @@ module.exports = class Commands {
             }
         }
 
-        Info(`registration of ${commandsLength} commands finish in cluster [${chalk.bold.blueBright(client.cluster.id)}]`)
+        Info(`registration of ${commandsLength} commands finish in cluster [${client.cluster.id}]`)
     }
 
 }

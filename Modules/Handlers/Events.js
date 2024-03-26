@@ -11,7 +11,7 @@ module.exports = class Events {
      */
 
     static async registerEvents(client) {
-        Process(`registration events in progress in cluster [${chalk.bold.blueBright(client.cluster.id)}]`)
+        Process(`registration events in progress in cluster [${client.cluster.id}]`)
 
         const path = `${process.cwd()}/Events/`
         const eventFiles = fs
@@ -37,7 +37,7 @@ module.exports = class Events {
             }
         }
 
-        Info(`registration events finish in cluster [${chalk.bold.blueBright(client.cluster.id)}]`)
+        Info(`registration events finish in cluster [${client.cluster.id}]`)
     }
 
 }

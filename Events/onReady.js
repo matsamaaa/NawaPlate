@@ -1,6 +1,7 @@
 const { Client } = require('discord.js');
 const chalk = require('chalk');
 const status = require('../Modules/Utils/updateStatus');
+const Interactions = require('../Modules/Utils/LoadInteractions');
 const { VERSION } = require('../Configs/Datas');
 const { Info } = require('../Modules/Structures/Logs');
 
@@ -25,6 +26,8 @@ module.exports = {
         ].forEach((line) => Info(line));
 
         await status.update(client);
+
+        await Interactions.loadCommands(client);
 
     }
 }
