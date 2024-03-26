@@ -3,17 +3,22 @@ require('dotenv').config({ path: './Configs/.env' });
 const { ClusterManager, HeartbeatManager } = require('discord-hybrid-sharding');
 const { Process } = require('./Modules/Structures/Logs');
 const Mongo = require('./Modules/Mongo/Connect');
-const { checkAllData } = require('./Modules/Utils/DataCheck');
+const Check = require('./Modules/Utils/DataCheck');
+const chalk = require('chalk');
+const { TOKEN_DISCORD } = process.env;
 
 (async () => {
 
     // Check all datas
-    const dataStatus = await checkAllData();
+    const dataStatus = await Check.checkAllData();
     if(!dataStatus) return;
 
     // Database connetion
     const mongoStatus = await Mongo.connect();
     if(!mongoStatus) return;
+
+    // Maintenance Status
+    await Check.checkMaintenance();
 
     // Cluster creation
     const manager = new ClusterManager(`${__dirname}/Modules/Client.js`, {
@@ -21,7 +26,7 @@ const { checkAllData } = require('./Modules/Utils/DataCheck');
         shardsPerClusters: 5,
         totalClusters: 'auto',
         mode: 'process',
-        token: process.env.TOKEN_DISCORD,
+        token: TOKEN_DISCORD,
         respawn: true,
     });
 
@@ -32,7 +37,7 @@ const { checkAllData } = require('./Modules/Utils/DataCheck');
         })
     )
 
-    manager.on('clusterCreate', cluster => Process(`Launched Cluster ${cluster.id}`));
+    manager.on('clusterCreate', cluster => Process(`Launched Cluster ${chalk.bold.blueBright(cluster.id)}`));
     manager.spawn({ timeout: -1 });
 
 })();

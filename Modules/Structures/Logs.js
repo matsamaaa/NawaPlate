@@ -3,6 +3,11 @@ const chalk = require("chalk")
 
 const date = dateFormat(new Date(), 'dd/mm/yy HH:MM:ss');
 module.exports = class Log {
+
+    /**
+     * @param {String} message 
+     */
+
     static Error(message) {
         console.error(`${chalk.bgRed.white.bold(' ERROR ')} [${date}] » ` + message)
     }

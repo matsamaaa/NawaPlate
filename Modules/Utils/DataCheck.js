@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+const { MAINTENANCE } = require('../../Configs/Datas');
 const { Error, Warn, Info } = require('../Structures/Logs');
 const { TOKEN_DISCORD, URL_MONGO_INTERNAL, URL_MONGO_EXTERNAL } = process.env;
 
@@ -36,6 +38,13 @@ module.exports = class Checker {
             Error(`invalid mongo url format in Configs/.env`);
             Checker.isRunning = false;
         }
+    }
+
+    // ================= MAINTENANCE =================
+
+    static async checkMaintenance() {
+        const status = MAINTENANCE ? chalk.bold.green('ENABLE') : chalk.bold.red('DISABLE');
+        Info(`Maintenance is ${status}`);
     }
 
     // ================= GLOBAL =================
