@@ -1,8 +1,7 @@
 require('dotenv').config({ path: './Configs/.env' });
 
 const { ClusterManager, HeartbeatManager, ReClusterManager } = require('discord-hybrid-sharding');
-const { Process, Error } = require('./Modules/Structures/Logs');
-const Mongo = require('./Modules/Mongo/Connect');
+const { Process, Error, Debug } = require('./Modules/Structures/Logs');
 const Check = require('./Modules/Utils/DataChecker');
 const chalk = require('chalk');
 const { TOKEN_DISCORD } = process.env;
@@ -12,10 +11,6 @@ const { TOKEN_DISCORD } = process.env;
     // Check all datas
     const dataStatus = await Check.checkAllData();
     if(!dataStatus) return;
-
-    // Database connetion
-    const mongoStatus = await Mongo.connect();
-    if(!mongoStatus) return;
 
     // Maintenance Status
     await Check.checkMaintenance();

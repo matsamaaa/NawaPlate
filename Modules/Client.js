@@ -1,7 +1,10 @@
 const { Client, GatewayIntentBits, Options } = require('discord.js');
 const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
 const Events = require('./Handlers/Events');
+const Mongo = require('./Mongo/Connect');
 const Commands = require('./Handlers/Commands');
+const { Debug } = require('./Structures/Logs');
+const mongoose = require('mongoose');
 
 const { TOKEN_DISCORD } = process.env;
 
@@ -57,6 +60,10 @@ const client = new Client({
 
 (async () => {
 	
+    // Database connetion
+    const mongoStatus = await Mongo.connect();
+    if(!mongoStatus) return;
+
 	await client.login(TOKEN_DISCORD);
 	client.cluster = new ClusterClient(client); // initialize the Client, so we access the .broadcastEval()
 

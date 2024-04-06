@@ -11,5 +11,8 @@ const langModel = new mongoose.Schema({
             },
             message: 'This language has not yet been translated'
         }
-    }
-})
+    },
+    date: Date,
+});
+
+module.exports = mongoose.model('lang', langModel, 'langs');
