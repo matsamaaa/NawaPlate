@@ -15,6 +15,7 @@ module.exports = class Embed {
             text: this.client.user.username, 
             iconURL: this.client.user.displayAvatarURL({ dynamic: true }) 
         });
+
     }
 
     Error(errorMessage) {

@@ -1,9 +1,11 @@
 const { checkMaintenance } = require('../Modules/Utils/DataChecker');
 const Sender = require('../Modules/Utils/Sender');
 const Langs = require('../Configs/Langs');
-const { Debug } = require('../Modules/Structures/Logs');
+const { Debug, Error } = require('../Modules/Structures/Logs');
 const InteractionChecker = require('../Modules/Utils/InteractionsChecker');
 const Lang = require('../Modules/Managers/Lang');
+const { DEVELOPPERS } = require('../Configs/Datas');
+const Cooldown = require('../Modules/Managers/Cooldown');
 
 module.exports = {
     name: 'interactionCreate',
@@ -18,23 +20,39 @@ module.exports = {
 
         if(!interaction) return;
 
-        const { client, locale, member } = interaction;
+        const { client, locale, member, guild, commandName } = interaction;
         const language = Langs[await new Lang(member.id).getLang(locale)];
 
         // Check maintenance
-        if(InteractionChecker.globalMaintenance()) return await new Sender(interaction).Error(language.errors['bot_maintenance']);
+        if(InteractionChecker.globalMaintenance() && !DEVELOPPERS.includes(member.id)) return await new Sender(interaction).Error(language.errors['bot_maintenance']);
         
-        /*
         if(interaction.isChatInputCommand()) {
-            const command = interaction.commandName;
             const cmd = client.slashCommands.get(commandName);
 
-            //check slowmode
+            // check command maintenance
+            if(!cmd) return;
+            if(cmd.options.maintenance && !DEVELOPPERS.includes(member.id)) return await new Sender(interaction).Error(language.errors['interaction_maintenance']);
 
-            if(cmd && !cmd.options.maintenance) {
+            // check perm
+            const clientMember = interaction.guild.members.cache.get(client.user.id);
+            if(!clientMember.permissions.has(cmd.options.permissions.bot[0])) return await new Sender(interaction).Error(language.errors['permission_missing_bot']);
+            if(!member.permissions.has(cmd.options.permissions.user[0])) return await new Sender(interaction).Error(language.errors['permission_missing_user']);
 
+            // check slowmode
+            if(cmd.options.slowmode) {
+                const slowmode = await new Cooldown(member.id).getCooldown(commandName, cmd.options.slowmode);
+                if(slowmode > 0) return await new Sender(interaction).Error(language.errors['slowmode'] + ` (${Math.round((cmd.options.slowmode - (new Date().getTime() - slowmode)) / 1000) }s)`);
             }
+
+            // check nsfw
+            if(cmd.options.nsfw) return await new Sender(interaction).Error(language.errors['nsfw_channel']);
+
+            cmd.execute(interaction, language)
+                .then(() => {
+                    new Cooldown(member.id).createCooldown(guild.id, commandName);
+                })
+                .catch(() => Error(`can't load interaction ${commandName} execute by ${member.id} in ${guild.id}`))
         }
-*/
+
     }
 }

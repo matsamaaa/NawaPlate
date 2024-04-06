@@ -20,7 +20,7 @@ module.exports = class Sender {
 
     async Error(message) {
         const embed = new Embed(this.client).Error(message);
-        const components = new ActionRowBuilder().addComponents(Buttons.contactDev);
+        const components = new ActionRowBuilder().addComponents(Buttons.contactDev, Buttons.status);
         await this.interaction.reply({ content: '', embeds: [embed], components: [components], files: [], ephemeral: true });
     }
 }

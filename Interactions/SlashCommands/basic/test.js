@@ -11,9 +11,9 @@ module.exports = {
             only: false,
             authorize: true
         },
-        maintenance: false,
+        maintenance: true,
         premium: false,
-        slowmode: null // time in miliseconds
+        slowmode: 600000 // time in miliseconds (10 min)
     },
     
     /**

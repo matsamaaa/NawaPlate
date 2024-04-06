@@ -1,7 +1,6 @@
 const { GuildMember } = require("discord.js");
 const langModel = require('../Mongo/Models/Lang');
 const Langs = require("../../Configs/Langs");
-const { default: mongoose } = require("mongoose");
 const { Debug } = require("../Structures/Logs");
 
 module.exports = class Lang {

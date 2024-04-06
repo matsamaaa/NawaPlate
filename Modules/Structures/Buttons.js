@@ -8,4 +8,10 @@ module.exports = class Buttons {
         .setStyle(ButtonStyle.Link)
         .setDisabled(false);
     
+    static status = new ButtonBuilder()
+        .setLabel('Status')
+        .setURL('https://status.nawashu.xyz/')
+        .setStyle(ButtonStyle.Link)
+        .setDisabled(false);
+
 }
