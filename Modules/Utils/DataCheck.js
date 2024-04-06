@@ -44,7 +44,7 @@ module.exports = class Checker {
 
     static async checkMaintenance() {
         const status = MAINTENANCE ? chalk.bold.green('ENABLE') : chalk.bold.red('DISABLE');
-        Info(`Maintenance is ${status}`);
+        Info(`maintenance is ${status}`);
     }
 
     // ================= GLOBAL =================
