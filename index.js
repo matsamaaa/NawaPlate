@@ -3,7 +3,7 @@ require('dotenv').config({ path: './Configs/.env' });
 const { ClusterManager, HeartbeatManager, ReClusterManager } = require('discord-hybrid-sharding');
 const { Process, Error } = require('./Modules/Structures/Logs');
 const Mongo = require('./Modules/Mongo/Connect');
-const Check = require('./Modules/Utils/DataCheck');
+const Check = require('./Modules/Utils/DataChecker');
 const chalk = require('chalk');
 const { TOKEN_DISCORD } = process.env;
 
@@ -48,18 +48,18 @@ const { TOKEN_DISCORD } = process.env;
         cluster.on("death", (cc, t) => {
             Error(`cluster ${chalk.bold.redBright(cluster.id)} died`)
     
-            console.log(`ID: ${cc.id}`);
-            console.log(`Exit Code: ${t.exitCode}`);
-            console.log(`Killed: ${t.killed}`);
-            console.log(`Args: ${t.spawnargs}`);
+            Error(`ID: ${cc.id}`);
+            Error(`Exit Code: ${t.exitCode}`);
+            Error(`Killed: ${t.killed}`);
+            Error(`Args: ${t.spawnargs}`);
         });
     
         cluster.on("error", (e) => {
             Error(`cluster ${chalk.bold.redBright(cluster.id)} has an error`)
     
-            console.log(e.name);
-            console.log(e.message);
-            console.log(e.stack);
+            Error(e.name);
+            Error(e.message);
+            Error(e.stack);
         });
     });
 
@@ -73,4 +73,18 @@ const { TOKEN_DISCORD } = process.env;
             Error('manager spawn error')
         });
 
+    // edit
+
+    process.on('uncaughtException', (err, origin) => {
+        fs.writeSync(
+            process.stderr.fd,
+            `Caught exception: ${err}\n` +
+            `Exception origin: ${origin}\n`,
+        );
+    });
+
+
+    process.on("unhandledRejection", async (reason, promise) => {
+
+    });
 })();

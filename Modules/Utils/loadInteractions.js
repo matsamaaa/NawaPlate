@@ -14,6 +14,8 @@ module.exports = class Interactions {
         const path = `${process.cwd()}/Interactions/SlashCommands/`;
         const slashCommands = fs.readdirSync(path);
 
+        const commands = [];
+
         for(const module of slashCommands) {
             const testFolder = fs.statSync(`${path}${module}`); // test if it's an folder
             if(testFolder.isDirectory()) {
@@ -23,13 +25,14 @@ module.exports = class Interactions {
 
                 for (const file of commandFiles) {
                     const command = require(`${path}${module}/${file}`);
-                    const slashCommand = client.slashCommand.get(command.data.name);
-                    if(slashCommand) client.application.commands.set(command.data);
+                    const slashCommand = client.slashCommands.get(command.data.name);
+                    if(slashCommand) commands.push(command.data);
                     else Error(`can't load the command ${command.data.name}`);
                 }
             }
         }
-
+        
+        client.application.commands.set(commands.map(cmd => cmd));
         Info(`loading commands finish in cluster [${client.cluster.id}]`)
     }
 

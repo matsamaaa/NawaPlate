@@ -3,7 +3,7 @@ const { MAINTENANCE } = require('../../Configs/Datas');
 const { Error, Warn, Info } = require('../Structures/Logs');
 const { TOKEN_DISCORD, URL_MONGO_INTERNAL, URL_MONGO_EXTERNAL } = process.env;
 
-module.exports = class Checker {
+module.exports = class DataChecker {
     static isRunning = true;
 
     // ================= TOKENS =================
@@ -11,7 +11,7 @@ module.exports = class Checker {
     static async tokenDiscord() {
         if(!TOKEN_DISCORD || TOKEN_DISCORD.startsWith("TOKEN_HERE")) {
             Error(`invalid discord token format in Configs/.env`);
-            Checker.isRunning = false;
+            DataChecker.isRunning = false;
         }
     }
     
@@ -36,7 +36,7 @@ module.exports = class Checker {
         // check all mongos
         if(!internalMongo && !externalMongo) {
             Error(`invalid mongo url format in Configs/.env`);
-            Checker.isRunning = false;
+            DataChecker.isRunning = false;
         }
     }
 
@@ -50,8 +50,8 @@ module.exports = class Checker {
     // ================= GLOBAL =================
 
     static async checkAllData() {
-        await Checker.tokenDiscord();
-        await Checker.urlMongo();
-        return Checker.isRunning;
+        await DataChecker.tokenDiscord();
+        await DataChecker.urlMongo();
+        return DataChecker.isRunning;
     }
 }

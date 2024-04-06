@@ -22,8 +22,8 @@ module.exports = {
     */
 
     data: new SlashCommandBuilder()
-    .setName('example')
-    .setDescription('example descritpion')
+    .setName('test')
+    .setDescription('test command')
     .setDefaultMemberPermissions(PermissionsBitField.Flags.SendMessages)
     .setDMPermission(true), 
     
@@ -34,6 +34,7 @@ module.exports = {
 
     async execute (interaction, client) {
 
+        return interaction.reply({ content: "test", ephemeral: true });
 
     }, 
     

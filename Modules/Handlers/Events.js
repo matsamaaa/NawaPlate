@@ -1,7 +1,6 @@
 const { Client } = require('discord.js');
-const chalk = require('chalk');
 const fs = require('fs');
-const { Error, Process, Info } = require('../Structures/Logs');
+const { Error, Process, Info, Debug } = require('../Structures/Logs');
 
 module.exports = class Events {
 
@@ -32,6 +31,7 @@ module.exports = class Events {
                 client.on(event.name, async (...args) => {
                     await event.execute(...args, client)
                         .catch((err) => {
+                            Debug(err)
                             Error(`can't load event ${event.name}`)
                         });
                 })
