@@ -41,7 +41,7 @@ module.exports = {
      * @param { import('discord.js').Interaction } interaction 
      */
     
-    async autocomplete (interaction) {
+    async autocomplete (interaction, language) {
 
     }
 }

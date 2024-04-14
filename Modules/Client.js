@@ -5,6 +5,7 @@ const Mongo = require('./Mongo/Connect');
 const Commands = require('./Handlers/Commands');
 const { Debug } = require('./Structures/Logs');
 const mongoose = require('mongoose');
+const Buttons = require('./Handlers/Buttons');
 
 const { TOKEN_DISCORD } = process.env;
 
@@ -71,6 +72,7 @@ const client = new Client({
 
 	await Events.registerEvents(client);
 	await Commands.registerCommands(client);
+	await Buttons.registerButtons(client);
 
 	// ================= Loading =================
 

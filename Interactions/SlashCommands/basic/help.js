@@ -15,7 +15,7 @@ module.exports = {
             only: false,
             authorize: true
         },
-        maintenance: true,
+        maintenance: false,
         premium: false,
         slowmode: null // time in miliseconds (10 min)
     },
@@ -53,7 +53,7 @@ module.exports = {
             pageMax = folders.length;
         const rows = new ActionRowBuilder().addComponents(leftArrow, rightArrow, contactDev);
 
-        await interaction.reply({ content: '', embeds: [await Page(page)], components: [rows], files: [], fetchReply: true, ephemeral: false })
+        await new Sender(interaction).CustomSend('', [await Page(page)], [rows], [], false)
         
         const filter = i => ['left-arrow', 'right-arrow'].includes(i.customId);
         const collector = interaction.channel.createMessageComponentCollector({ filter, time: 60 * 1000 }); // 1 min
@@ -67,7 +67,7 @@ module.exports = {
                     if(page < pageMax) page++;
                 }
 
-                await interaction.editReply({ content: '', embeds: [await Page(page)], components: [rows], files: [], ephemeral: false });
+                await new Sender(i).CustomEdit('', [await Page(page)], [rows], [], false)
             } else {
                 await new Sender(i).Error(language.errors['reply_match']);
             }

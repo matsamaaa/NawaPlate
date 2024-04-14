@@ -1,4 +1,5 @@
-const { PermissionsBitField, SlashCommandBuilder, Client } = require('discord.js');
+const { PermissionsBitField, SlashCommandBuilder, Client, ActionRowBuilder } = require('discord.js');
+const { reload } = require('../../../Modules/Structures/Buttons');
 
 module.exports = {
     options: {
@@ -31,9 +32,12 @@ module.exports = {
      * @param { import('discord.js').Interaction } interaction 
      */
 
-    async execute (interaction) {
+    async execute (interaction, language) {
 
-        return interaction.reply({ content: "test", ephemeral: true });
+        const rows = new ActionRowBuilder()
+            .addComponents(reload);
+
+        return interaction.reply({ content: "test", components: [rows], ephemeral: true });
 
     }, 
     

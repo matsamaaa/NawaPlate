@@ -20,7 +20,7 @@ module.exports = {
 
         if(!interaction) return;
 
-        const { client, locale, member, guild, commandName } = interaction;
+        const { client, locale, member, guild, commandName, customId } = interaction;
         const language = Langs[await new Lang(member.id).getLang(locale)];
 
         // Check maintenance
@@ -33,13 +33,15 @@ module.exports = {
             if(!cmd) return;
             if(cmd.options.maintenance && !DEVELOPPERS.includes(member.id)) return await new Sender(interaction).Error(language.errors['interaction_maintenance']);
 
+            // check dm
+
             // check perm
             const clientMember = interaction.guild.members.cache.get(client.user.id);
             if(!clientMember.permissions.has(cmd.options.permissions.bot[0])) return await new Sender(interaction).Error(language.errors['permission_missing_bot']);
             if(!member.permissions.has(cmd.options.permissions.user[0])) return await new Sender(interaction).Error(language.errors['permission_missing_user']);
 
             // check slowmode
-            if(cmd.options.slowmode) {
+            if(cmd.options.slowmode && !DEVELOPPERS.includes(member.id)) {
                 const slowmode = await new Cooldown(member.id).getCooldown(commandName, cmd.options.slowmode);
                 if(slowmode > 0) return await new Sender(interaction).Error(language.errors['slowmode'] + ` (${Math.round((cmd.options.slowmode - (new Date().getTime() - slowmode)) / 1000) }s)`);
             }
@@ -53,8 +55,26 @@ module.exports = {
                 })
                 .catch((err) => {
                     Debug(err);
+                    console.log(err)
                     Error(`can't load interaction ${commandName} execute by ${member.id} in ${guild.id}`);
                 })
+        } else if (interaction.isButton()) {
+            const btn = client.buttonsCommands.get(customId);
+
+            // check button maintenance
+            if(!btn) return;
+            if(btn.options.maintenance && !DEVELOPPERS.includes(member.id)) return await new Sender(interaction).Error(language.errors['interaction_maintenance']);
+
+            btn.execute(interaction, language)
+                .then(() => {
+
+                })
+                .catch((err) => {
+                    Debug(err);
+                    console.log(err)
+                    Error(`can't load interaction ${customId} execute by ${member.id} in ${guild.id}`);
+                })
+
         }
 
     }

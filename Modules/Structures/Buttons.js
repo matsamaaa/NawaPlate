@@ -24,4 +24,10 @@ module.exports = class Buttons {
         .setLabel('▶')
         .setStyle(ButtonStyle.Primary);
 
+    static reload = new ButtonBuilder()
+        .setCustomId('reload')
+        .setLabel('Reload')
+        .setEmoji('1123000117457342465')
+        .setStyle(ButtonStyle.Primary);
+
 }
