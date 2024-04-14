@@ -1,4 +1,4 @@
-const { ActionRowBuilder } = require("discord.js");
+const { ActionRowBuilder, EmbedBuilder } = require("discord.js");
 const Embed = require("../Structures/Embeds");
 const Buttons = require("../Structures/Buttons");
 const { Debug } = require("../Structures/Logs");
@@ -15,7 +15,7 @@ module.exports = class Sender {
     }
 
     /**
-     * @param { String } message 
+     * @param { String } message
      */
 
     async Error(message) {
@@ -23,4 +23,5 @@ module.exports = class Sender {
         const components = new ActionRowBuilder().addComponents(Buttons.contactDev, Buttons.status);
         await this.interaction.reply({ content: '', embeds: [embed], components: [components], files: [], ephemeral: true });
     }
+
 }

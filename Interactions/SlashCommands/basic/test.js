@@ -29,10 +29,9 @@ module.exports = {
     
     /**
      * @param { import('discord.js').Interaction } interaction 
-     * @param { Client } client 
      */
 
-    async execute (interaction, client) {
+    async execute (interaction) {
 
         return interaction.reply({ content: "test", ephemeral: true });
 

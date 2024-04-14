@@ -1,4 +1,5 @@
 const { EmbedBuilder, Client } = require('discord.js');
+const { COLOR, COLORERR } = require('../../Configs/Datas');
 
 module.exports = class Embed {
 
@@ -20,8 +21,13 @@ module.exports = class Embed {
 
     Error(errorMessage) {
         return new EmbedBuilder(this.Base)
-            .setColor('#ed5e4e')
+            .setColor(COLORERR)
             .setDescription(errorMessage);
+    }
+
+    Command() {
+        return new EmbedBuilder(this.Base)
+            .setColor(COLOR);
     }
     
 }

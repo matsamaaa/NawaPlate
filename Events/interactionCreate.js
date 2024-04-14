@@ -51,7 +51,10 @@ module.exports = {
                 .then(() => {
                     new Cooldown(member.id).createCooldown(guild.id, commandName);
                 })
-                .catch(() => Error(`can't load interaction ${commandName} execute by ${member.id} in ${guild.id}`))
+                .catch((err) => {
+                    Debug(err);
+                    Error(`can't load interaction ${commandName} execute by ${member.id} in ${guild.id}`);
+                })
         }
 
     }

@@ -14,4 +14,14 @@ module.exports = class Buttons {
         .setStyle(ButtonStyle.Link)
         .setDisabled(false);
 
+    static leftArrow = new ButtonBuilder()
+        .setCustomId('left-arrow')
+        .setLabel('◀')
+        .setStyle(ButtonStyle.Primary);
+
+    static rightArrow = new ButtonBuilder()
+        .setCustomId('right-arrow')
+        .setLabel('▶')
+        .setStyle(ButtonStyle.Primary);
+
 }
