@@ -1,3 +1,5 @@
+const Sender = require('../../Modules/Utils/Sender');
+
 module.exports = {
     options: {
         maintenance: false,
@@ -12,7 +14,6 @@ module.exports = {
     async execute (interaction, language) {
 
         const { message } = interaction;
-        return await message.edit({ content: message.content });
-
+        await new Sender(interaction).CustomEdit(message.content, message.embeds, message.components, message.attachments, false);
     }
 }

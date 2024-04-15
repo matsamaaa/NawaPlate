@@ -55,7 +55,6 @@ module.exports = {
                 })
                 .catch((err) => {
                     Debug(err);
-                    console.log(err)
                     Error(`can't load interaction ${commandName} execute by ${member.id} in ${guild.id}`);
                 })
         } else if (interaction.isButton()) {
@@ -65,13 +64,14 @@ module.exports = {
             if(!btn) return;
             if(btn.options.maintenance && !DEVELOPPERS.includes(member.id)) return await new Sender(interaction).Error(language.errors['interaction_maintenance']);
 
+            await interaction.deferUpdate();
+
             btn.execute(interaction, language)
                 .then(() => {
 
                 })
                 .catch((err) => {
                     Debug(err);
-                    console.log(err)
                     Error(`can't load interaction ${customId} execute by ${member.id} in ${guild.id}`);
                 })
 
