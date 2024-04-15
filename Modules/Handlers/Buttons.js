@@ -1,7 +1,5 @@
 const { Client, Collection } = require('discord.js');
-const chalk = require('chalk');
 const fs = require('fs');
-const { Debug } = require('../Structures/Logs');
 
 module.exports = class Buttons {
 

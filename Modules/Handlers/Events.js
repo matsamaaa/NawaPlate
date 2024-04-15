@@ -23,7 +23,7 @@ module.exports = class Events {
                 client.once(event.name, async (...args) => {
                     await event.execute(...args, client)
                         .catch((err) => {
-                            Error(`can't load event ${event.name}`)
+                            Error(` ${event.name}`)
                         });
                 });
             } else {
@@ -31,6 +31,7 @@ module.exports = class Events {
                     await event.execute(...args, client)
                         .catch((err) => {
                             Debug(err)
+                            console.log(err)
                             Error(`can't load event ${event.name}`)
                         });
                 })

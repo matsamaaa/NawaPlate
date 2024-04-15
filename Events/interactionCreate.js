@@ -57,6 +57,11 @@ module.exports = {
                     Debug(err);
                     Error(`can't load interaction ${commandName} execute by ${member.id} in ${guild.id}`);
                 })
+        } else if (interaction.isAutocomplete()) {
+
+            const cmd = client.slashCommands.get(commandName);
+            await cmd.autocomplete(interaction);
+
         } else if (interaction.isButton()) {
             const btn = client.buttonsCommands.get(customId);
 
@@ -64,7 +69,8 @@ module.exports = {
             if(!btn) return;
             if(btn.options.maintenance && !DEVELOPPERS.includes(member.id)) return await new Sender(interaction).Error(language.errors['interaction_maintenance']);
 
-            await interaction.deferUpdate();
+            // defer interaction
+            if(btn.defer) await interaction.deferUpdate();
 
             btn.execute(interaction, language)
                 .then(() => {
@@ -72,9 +78,27 @@ module.exports = {
                 })
                 .catch((err) => {
                     Debug(err);
+                    console.log(err)
                     Error(`can't load interaction ${customId} execute by ${member.id} in ${guild.id}`);
                 })
 
+        } else if (interaction.isModalSubmit()) {
+            const mdl = await client.modalsCommands.get(interaction.customId);
+
+            if(!mdl)
+            if(mdl.options.maintenance && !DEVELOPPERS.includes(member.id)) return await new Sender(interaction).Error(language.errors['interaction_maintenance']);
+        
+            await interaction.deferUpdate();
+
+            mdl.execute(interaction, language)
+                .then(() => {
+
+                })
+                .catch((err) => {
+                    Debug(err);
+                    console.log(err)
+                    Error(`can't load interaction ${customId} execute by ${member.id} in ${guild.id}`);
+                })
         }
 
     }

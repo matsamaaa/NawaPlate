@@ -13,8 +13,25 @@ module.exports = class Lang {
         this.memberId = id;
     }
 
-    async createLang(lang) {
+    /**
+     * @param { String } lang 
+     */
 
+    async createLang(lang) {
+        const result = new langModel({
+            memberId: this.memberId,
+            lang: lang
+        });
+
+        await result.save();
+    }
+
+    async existUser() {
+        const result = await langModel.findOne({ 
+            memberId: this.memberId 
+        });
+
+        return !!result;
     }
 
     /**
@@ -27,6 +44,20 @@ module.exports = class Lang {
         if(!lang || !Langs[lang]) lang = Langs[locale] ? locale : 'en-US';
 
         return lang;
+    }
+
+    /**
+     * @param { String } lang 
+     */
+
+    async updateLang(lang) {
+        const result = await langModel.findOneAndUpdate({
+            memberId: this.memberId
+        }, {
+            lang: lang
+        });
+
+        result.save();
     }
 
 }

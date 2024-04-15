@@ -25,6 +25,24 @@ module.exports = class Sender {
     }
 
     /**
+     * @param { String } message
+     */
+
+    async Info(message) {
+        const embed = new Embed(this.client).Info(message);
+        return await this.interaction.reply({ content: '', embeds: [embed], components: [], files: [], ephemeral: true });
+    }
+
+    /**
+     * @param { String } message
+     */
+
+    async InfoEdit(message) {
+        const embed = new Embed(this.client).Info(message);
+        return await this.interaction.editReply({ content: '', embeds: [embed], components: [], files: [], ephemeral: true });
+    }
+
+    /**
      * @param { String } content 
      * @param { EmbedBuilder } embeds 
      * @param { ActionRowBuilder} components 
@@ -46,6 +64,29 @@ module.exports = class Sender {
 
     async CustomEdit(content, embeds, components, files, ephemeral) {
         return await this.interaction.editReply({ content: content, embeds: embeds, components: components, files: files, fetchReply: true, ephemeral: ephemeral })
+    }
+
+    /**
+     * @param { import("discord.js").Channel } channel
+     * @param { String } content 
+     * @param { EmbedBuilder } embeds 
+     * @param { ActionRowBuilder} components 
+     * @param { AttachmentBuilder } files 
+     */
+
+    async CustomChannelSend(channel, content, embeds, components, files) {
+        this.client.cluster.broadcastEval(async (c, { channelId, content, embeds, components, files }) => {
+            const channel = c.channels.cache.get(channelId);
+            if(channel) return await channel.send({ content: content, embeds: embeds, components: components, files: files })
+        }, {
+            context: {
+                channelId: channel,
+                content: content, 
+                embeds: embeds, 
+                components: components, 
+                files: files
+            }
+        })
     }
 
 }

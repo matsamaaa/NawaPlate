@@ -5,6 +5,7 @@ module.exports = {
         maintenance: false,
         premium: false
     },
+    defer: false,
     id: 'reload',
 
     /**
@@ -15,5 +16,6 @@ module.exports = {
 
         const { message } = interaction;
         await new Sender(interaction).CustomEdit(message.content, message.embeds, message.components, message.attachments, false);
+    
     }
 }

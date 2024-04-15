@@ -1,5 +1,5 @@
 const { PermissionsBitField, SlashCommandBuilder, Client, ActionRowBuilder } = require('discord.js');
-const { reload } = require('../../../Modules/Structures/Buttons');
+const { reload, report } = require('../../../Modules/Structures/Buttons');
 
 module.exports = {
     options: {
@@ -35,17 +35,17 @@ module.exports = {
     async execute (interaction, language) {
 
         const rows = new ActionRowBuilder()
-            .addComponents(reload);
+            .addComponents(reload, report);
 
         return interaction.reply({ content: "test", components: [rows], ephemeral: true });
 
-    }, 
+    },
     
     /**
      * @param { import('discord.js').Interaction } interaction 
      */
     
     async autocomplete (interaction) {
-
+        
     }
 }

@@ -3,16 +3,16 @@ module.exports = {
         maintenance: false,
         premium: false
     },
-    defer: true, // if you must show modal or ...
     id: 'example',
-
+    
     /**
-     * @param { import('discord.js').Interaction } interaction 
+     * @param { import("discord.js").Interaction } interaction 
+     * @param { * } language 
      */
-
+    
     async execute (interaction, language) {
 
-
+        
 
     }
 }

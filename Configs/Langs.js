@@ -1,5 +1,6 @@
 module.exports = {
     'en-US' : {
+        name: 'English',
         errors: {
             'bot_maintenance': "We are currently under maintenance.",
             'interaction_maintenance': "This feature is currently under maintenance.",
@@ -12,10 +13,16 @@ module.exports = {
         },
         commands: {
             'help_desc': "All commands of this category are displayed here.",
+            'language_success': "Your language has been correctly updated.",
+            'language_desc': "Your actual language is : "
+        },
+        modals: {
+            'report_success': "Your report has been correctly send."
         }
     },
 
     'fr': {
+        name: 'Français',
         errors: {
             'bot_maintenance': "Nous sommes actuellement en maintenance.",
             'interaction_maintenance': "Cette fonctionnalité est pour l'instant en maintenance.",
@@ -28,6 +35,10 @@ module.exports = {
         },
         commands: {
             'help_desc': "Toutes les commandes de cette catégorie sont affichés ici.",
+            'language_success': "Ton language a été mis a jour."
+        },
+        modals: {
+            'report_success': "Ton report a été correctement envoyé."
         }
     }
 }

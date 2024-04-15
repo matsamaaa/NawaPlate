@@ -14,5 +14,13 @@ const DEVELOPPERS = [
 
 const COLOR = '#BD2581';
 const COLORERR = '#ed5e4e';
+const COLOROK = '#63c73c';
 
-module.exports = { VERSION, MAINTENANCE, ACTIVITIES, DEVELOPPERS, COLOR, COLORERR };
+const CHANNELS = {
+    report: {
+        guild: '1082062947540545638',
+        channel: '1172530539111120986'
+    }
+}
+
+module.exports = { VERSION, MAINTENANCE, ACTIVITIES, DEVELOPPERS, COLOR, COLORERR, COLOROK, CHANNELS };

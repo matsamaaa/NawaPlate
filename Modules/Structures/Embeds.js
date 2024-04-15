@@ -1,5 +1,5 @@
 const { EmbedBuilder, Client } = require('discord.js');
-const { COLOR, COLORERR } = require('../../Configs/Datas');
+const { COLOR, COLORERR, COLOROK } = require('../../Configs/Datas');
 
 module.exports = class Embed {
 
@@ -23,6 +23,12 @@ module.exports = class Embed {
         return new EmbedBuilder(this.Base)
             .setColor(COLORERR)
             .setDescription(errorMessage);
+    }
+
+    Info(InfoMessage) {
+        return new EmbedBuilder(this.Base)
+        .setColor(COLOROK)
+        .setDescription(InfoMessage);
     }
 
     Command() {

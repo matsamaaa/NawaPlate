@@ -30,4 +30,10 @@ module.exports = class Buttons {
         .setEmoji('1123000117457342465')
         .setStyle(ButtonStyle.Primary);
 
+    static report = new ButtonBuilder()
+        .setCustomId('report')
+        .setLabel('Report')
+        .setEmoji('1226191138596323388')
+        .setStyle(ButtonStyle.Danger)
+
 }
