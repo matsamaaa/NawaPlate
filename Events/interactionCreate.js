@@ -78,7 +78,6 @@ module.exports = {
                 })
                 .catch((err) => {
                     Debug(err);
-                    console.log(err)
                     Error(`can't load interaction ${customId} execute by ${member.id} in ${guild.id}`);
                 })
 
@@ -96,7 +95,6 @@ module.exports = {
                 })
                 .catch((err) => {
                     Debug(err);
-                    console.log(err)
                     Error(`can't load interaction ${customId} execute by ${member.id} in ${guild.id}`);
                 })
         }
