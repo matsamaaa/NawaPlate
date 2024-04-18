@@ -10,22 +10,22 @@ NawaPlate is a Discord template designed to simplify the creation of Discord bot
 
 ### Example content for `.env` file
 
-\`\`\`env
+```env
 # ================= TOKENS =================
 TOKEN_DISCORD="TOKEN_HERE"
 
 # ================= URLS =================
 URL_MONGO_INTERNAL="URL_HERE (e.g., mongodb://USERNAME:PASSWORD@DOMAIN_NAME/?authMechanism=DEFAULT&authSource=admin&dbName=DATABASE_NAME)"
 URL_MONGO_EXTERNAL="URL_HERE (e.g., mongodb://USERNAME:PASSWORD@IP/?authMechanism=DEFAULT&authSource=admin&dbName=DATABASE_NAME)"
-\`\`\`
+```
 
 ## Installation
 
-\`\`\`bash
+```bash
 git clone https://github.com/matsamaaa/NawaPlate
 cd NawaPlate
 npm install --save
-\`\`\`
+```
 
 ## Configuration
 
@@ -49,9 +49,9 @@ This project is licensed under the MIT License. See the `LICENSE` file for more 
 
 To run the bot:
 
-\`\`\`bash
+```bash
 npm start
-\`\`\`
+```
 
 ---
 
