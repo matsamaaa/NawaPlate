@@ -15,8 +15,8 @@ NawaPlate is a Discord template designed to simplify the creation of Discord bot
 TOKEN_DISCORD="TOKEN_HERE"
 
 # ================= URLS =================
-URL_MONGO_INTERNAL="URL_HERE (e.g., mongodb://USERNAME:PASSWORD@DOMAIN_NAME/?authMechanism=DEFAULT&authSource=admin&dbName=DATABASE_NAME)"
-URL_MONGO_EXTERNAL="URL_HERE (e.g., mongodb://USERNAME:PASSWORD@IP/?authMechanism=DEFAULT&authSource=admin&dbName=DATABASE_NAME)"
+URL_MONGO_INTERNAL="URL_HERE (ex: mongodb://USERNAME:PASSWORD@DOMAIN_NAME/?authMechanism=DEFAULT&authSource=admin&dbName=DATABASE_NAME)"
+URL_MONGO_EXTERNAL="URL_HERE (ex: mongodb://USERNAME:PASSWORD@IP/?authMechanism=DEFAULT&authSource=admin&dbName=DATABASE_NAME)"
 ```
 
 ## Installation
