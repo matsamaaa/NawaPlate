@@ -4,8 +4,8 @@
   "description": "nawaplate is an open-source template for discord.js (used by the bot Nawashu)",
   "main": "index.js",
   "scripts": {
-    "start": "node --trace-warnings index.js",
-    "dev": "node index.js"
+    "start": "node index.js",
+    "dev": "node --trace-warnings index.js"
   },
   "repository": {
     "type": "git",
