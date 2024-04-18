@@ -18,6 +18,8 @@ TOKEN_DISCORD="TOKEN_HERE"
 URL_MONGO_INTERNAL="URL_HERE (ex: mongodb://USERNAME:PASSWORD@DOMAIN_NAME/?authMechanism=DEFAULT&authSource=admin&dbName=DATABASE_NAME)"
 URL_MONGO_EXTERNAL="URL_HERE (ex: mongodb://USERNAME:PASSWORD@IP/?authMechanism=DEFAULT&authSource=admin&dbName=DATABASE_NAME)"
 ```
+> [!CAUTION]
+> You should never share your .env file, as it contains information that could be misused.
 
 ## Installation
 
