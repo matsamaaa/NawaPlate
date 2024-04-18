@@ -2,6 +2,10 @@
 
 NawaPlate is a Discord template designed to simplify the creation of Discord bots using JavaScript with Node.js. It was initially developed for the [Nawashu](https://nawashu.xyz/) bot by [mat_sama](https://github.com/matsamaaa).
 
+<img src="https://img.shields.io/badge/version-1.0-05122A?style=for-the-badge">
+<img src="https://img.shields.io/github/issues/matsamaaa/NawaPlate.svg?style=for-the-badge">
+<img src="https://img.shields.io/github/stars/matsamaaa/NawaPlate.svg?style=for-the-badge">
+
 ## Prerequisites
 
 - Installed MongoDB
