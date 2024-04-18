@@ -31,7 +31,7 @@ npm install --save
 
 1. Fill out the `.env` file as shown above.
 > [!WARNING]
-> 3. Make sure MongoDB is running and the `commandlogs` and `langs` collections are created.
+> 2. Make sure MongoDB is running and the `commandlogs` and `langs` collections are created.
 
 ## Used Packages
 
