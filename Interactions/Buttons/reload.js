@@ -15,6 +15,7 @@ module.exports = {
     async execute (interaction, language) {
 
         const { message } = interaction;
+        await interaction.deferUpdate();
         await new Sender(interaction).CustomEdit(message.content, message.embeds, message.components, message.attachments, false);
     
     }

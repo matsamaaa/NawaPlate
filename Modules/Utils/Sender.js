@@ -63,7 +63,7 @@ module.exports = class Sender {
      */
 
     async CustomEdit(content, embeds, components, files, ephemeral) {
-        return await this.interaction.editReply({ content: content, embeds: embeds, components: components, files: files, fetchReply: true, ephemeral: ephemeral })
+        return await this.interaction.message.edit({ content: content, embeds: embeds, components: components, files: files, fetchReply: true, ephemeral: ephemeral })
     }
 
     /**
