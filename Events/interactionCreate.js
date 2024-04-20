@@ -20,7 +20,7 @@ module.exports = {
 
         if(!interaction) return;
 
-        const { client, locale, member, guild, commandName, customId } = interaction;
+        const { client, locale, member, guild, commandName, customId, channel } = interaction;
         const language = Langs[await new Lang(member.id).getLang(locale)];
 
         // Check maintenance
@@ -47,7 +47,7 @@ module.exports = {
             }
 
             // check nsfw
-            if(cmd.options.nsfw) return await new Sender(interaction).Error(language.errors['nsfw_channel']);
+            if(cmd.options.nsfw && !channel.nsfw) return await new Sender(interaction).Error(language.errors['nsfw_channel']);
 
             cmd.execute(interaction, language)
                 .then(() => {
