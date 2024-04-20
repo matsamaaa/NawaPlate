@@ -1,6 +1,16 @@
+<img src="https://github.com/matsamaaa/NawaPlate/blob/main/banner.png?raw=true">
+ㅤ
+
+
 # NawaPlate
 
 NawaPlate is a Discord template designed to simplify the creation of Discord bots using JavaScript with Node.js. It was initially developed for the [Nawashu](https://nawashu.xyz/) bot by [mat_sama](https://github.com/matsamaaa).
+
+<p align="center">
+<img src="https://img.shields.io/badge/version-1.0-05122A?style=for-the-badge">
+<img src="https://img.shields.io/github/issues/matsamaaa/NawaPlate.svg?style=for-the-badge">
+<img src="https://img.shields.io/github/stars/matsamaaa/NawaPlate.svg?style=for-the-badge">
+</p>
 
 ## Prerequisites
 
@@ -18,6 +28,8 @@ TOKEN_DISCORD="TOKEN_HERE"
 URL_MONGO_INTERNAL="URL_HERE (ex: mongodb://USERNAME:PASSWORD@DOMAIN_NAME/?authMechanism=DEFAULT&authSource=admin&dbName=DATABASE_NAME)"
 URL_MONGO_EXTERNAL="URL_HERE (ex: mongodb://USERNAME:PASSWORD@IP/?authMechanism=DEFAULT&authSource=admin&dbName=DATABASE_NAME)"
 ```
+> [!CAUTION]
+> You should never share your .env file, as it contains information that could be misused.
 
 ## Installation
 
@@ -30,7 +42,8 @@ npm install --save
 ## Configuration
 
 1. Fill out the `.env` file as shown above.
-2. Make sure MongoDB is running and the `commandlogs` and `langs` collections are created.
+> [!WARNING]
+> 2. Make sure MongoDB is running and the `commandlogs` and `langs` collections are created.
 
 ## Used Packages
 
