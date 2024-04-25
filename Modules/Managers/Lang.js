@@ -41,7 +41,8 @@ module.exports = class Lang {
 
     async getLang(locale) {
         let lang = await langModel.findOne({ memberId: this.memberId });
-        if(!lang || !Langs[lang]) lang = Langs[locale] ? locale : 'en-US';
+        if(!lang || !Langs[lang.lang]) lang = Langs[locale] ? locale : 'en-US';
+        else lang = lang.lang;
 
         return lang;
     }
